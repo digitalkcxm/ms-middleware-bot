@@ -9,11 +9,9 @@ app.use(bodyParser);
 cors(app);
 app.use(helmet());
 
-app.get("/health", (req, res) =>
+app.get("/api/v1/health", (req, res) =>
   res.status(200).send({
-    Api: {
-      status: "On",
-    },
+    status: "On",
   })
 );
 

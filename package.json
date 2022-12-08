@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "dev": "nodemon index.js"
+    "dev": "nodemon ./src/index.js"
   },
   "author": "Rafael da Silva Mendes",
   "license": "ISC",
