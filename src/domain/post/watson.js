@@ -1,7 +1,7 @@
 import createSession from "../session/createSession.js";
 
 const post = ({ assistant, message, workspace }) => {
-  assistant
+  return assistant
     .message(message)
     .then((res) => {
       console.log(JSON.stringify(res, null, 2));
