@@ -26,6 +26,7 @@ const _retriveMessage = (data) => {
 };
 
 const _sendMessage = (res, project_name) => {
-  return sendToQueue(res, `${project_name}:watson:send`);
+  sendToQueue(res, `${project_name}:watson:send`);
+  return true;
 };
 export default makeMessage;
