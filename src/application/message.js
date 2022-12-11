@@ -2,10 +2,10 @@ import post from "../domain/post/watson.js";
 import instanceWatson from "../infraestructure/instance/watson/intance.js";
 import { sendToQueue } from "../infraestructure/config/rabbitmq.js";
 
-const makeMessage = (data) => {
+const makeMessage = async  (data) => {
   const { api_key, context, project_name, workspace } = data;
   try {
-    const res = post({
+    const res = await post({
       assistant: instanceWatson(api_key),
       message: context,
       workspace: workspace,
