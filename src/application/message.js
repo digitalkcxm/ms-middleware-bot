@@ -26,7 +26,7 @@ const _retriveMessage = (data) => {
 };
 
 const _sendMessage = (res, project_name) => {
-  publishMessage(res, `${project_name}:watson:send`);
+  publishMessage(res, project_name);
   return true;
 };
 export default makeMessage;

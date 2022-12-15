@@ -74,7 +74,7 @@ export function publishMessage(data, queue) {
 
     ch.assertExchange(exchange, "direct", { durable: true });
 
-    ch.publish(exchange, "", Buffer.from(JSON.stringify(data)));
+    ch.publish(exchange, queue, Buffer.from(JSON.stringify(data)));
     ch.close();
   });
 }
