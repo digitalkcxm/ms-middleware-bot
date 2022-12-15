@@ -1,6 +1,6 @@
 import post from "../domain/post/watson.js";
 import instanceWatson from "../infraestructure/instance/watson/intance.js";
-import { sendToQueue } from "../infraestructure/config/rabbitmq.js";
+import { publishMessage, sendToQueue } from "../infraestructure/config/rabbitmq.js";
 
 const makeMessage = async  (data) => {
   const { api_key, context, project_name, workspace } = data;
@@ -26,7 +26,7 @@ const _retriveMessage = (data) => {
 };
 
 const _sendMessage = (res, project_name) => {
-  sendToQueue(res, `${project_name}:watson:send`);
+  publishMessage(res, `${project_name}:watson:send`);
   return true;
 };
 export default makeMessage;

@@ -60,10 +60,21 @@ export function sendToQueue(data, queue) {
     if (err) console.log("erro ao criar a fila", err);
 
     ch.assertQueue(queue, { durable: true });
-    ch.sendToQueue(queue, Buffer.from(JSON.stringify(data)), {
-      persistent: true,
-    });
+
+    ch.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
     ch.close();
   });
-  
+}
+
+export function publishMessage(data, queue) {
+  const conn = global._connRabbitGlobal;
+  return conn.createChannel((err, ch) => {
+    if (err) console.log("erro ao criar a fila", err);
+    const exchange = "watson_send";
+
+    ch.assertExchange(exchange, "direct", { durable: true });
+
+    ch.publish(exchange, "", Buffer.from(JSON.stringify(data)));
+    ch.close();
+  });
 }
