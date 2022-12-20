@@ -12,14 +12,14 @@ Esse serviço foi criado para intermediar a comunicação do bot com o core, com
 ```No core a fila conta com uma dead queue que recebe as mensagens que não conseguiram ser processadas pelo core que ocorreram erros ou por algum motivo não foram processadas pelo tempo determinado na aplicação core. Essas mensagens ficam aguardando alguem retira-las. OBS: a pessoa que remover as mensagens da dead queue devem tratar a mesma para que não volte a acontecer o erro no bot. ```
 
 #### Dead QUEUE.
-```json
+```
     QUEUE: watson:dead_message
     EXCHANGE: dead_exchange_watson
 ```
 
 #### Recebe as mensagens.
 
-```json
+```
   watson:receive
 ```
 
@@ -34,7 +34,7 @@ Esse serviço foi criado para intermediar a comunicação do bot com o core, com
 
 #### Envia as mensagens
 
-```json
+```
   watson:send
 ```
 Essa mensagem é passada para um exchange que é um intermediador das filas, então é necessario informar o routing_key para encaminhar para a fila do cliente correto. O routing key é igual ao project_name do projeto.
