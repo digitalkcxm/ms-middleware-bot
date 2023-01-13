@@ -1,15 +1,23 @@
 import post from "../domain/post/watson.js";
 import instanceWatson from "../infraestructure/instance/watson/intance.js";
-import { publishMessage, sendToQueue } from "../infraestructure/config/rabbitmq.js";
+import {
+  publishMessage,
+  sendToQueue,
+} from "../infraestructure/config/rabbitmq.js";
 
-const makeMessage = async  (data) => {
-  const { api_key, context, project_name, workspace } = data;
+const makeMessage = async (data, redis) => {
+  const { api_key, context, project_name, workspace, protocol } = data;
   try {
-    const res = await post({
-      assistant: instanceWatson(api_key),
-      message: context,
-      workspace: workspace,
-    });
+    const res = await post(
+      {
+        assistant: instanceWatson(api_key),
+        message: context,
+        workspace: workspace,
+        protocol: protocol,
+        project_name: project_name,
+      },
+      redis
+    );
     if (res && res.result) {
       data.context = res.result;
       _sendMessage(data, project_name);

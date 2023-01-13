@@ -3,6 +3,6 @@ import queue from "../consumers/consumerWatson.js";
 
 const connQueue = await newConnection();
 
-const start = queue(connQueue);
+const start = (redis) => queue(connQueue, redis);
 
 export default start;
