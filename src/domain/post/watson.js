@@ -10,7 +10,7 @@ const post = async (
     assistant,
     workspace,
   });
-  console.log('  message.sessionId',  message.sessionId)
+  console.log("  message.sessionId", message.sessionId);
   if (message.sessionId) {
     return assistant
       .message(message)
@@ -28,12 +28,21 @@ const post = async (
           console.log(session);
           if (session) {
             message.sessionId = session;
-            post({ assistant, message, workspace });
-          }
+            post(
+              {
+                assistant,
+                message,
+                workspace,
+                protocol,
+                project_name,
+              },
+              redis
+            );
+          } else return false;
         }
-        return err;
+        return true;
       });
-  }
+  } else return false;
 };
 
 export default post;
