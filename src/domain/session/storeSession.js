@@ -1,18 +1,18 @@
 import createSession from "./createSession.js";
 
-const storeSession = (
+const storeSession = async (
   redis,
   { project_name, protocol, assistant, workspace }
 ) => {
   let session;
-  session = redis.hget(`${project_name}:session:${protocol}`);
-
+  session = await redis.get(`${project_name}:session:${protocol}`);
+  console.log('session',session);
   if (!session) {
-    session = createSession(
+    session = await createSession(
       { assistant, workspace, project_name, protocol },
       redis
     );
-    console.log(session);
+    console.log("session ---->", session);
   }
 
   return session;

@@ -1,15 +1,16 @@
 import createSession from "../session/createSession.js";
 import storeSession from "../session/storeSession.js";
-const post = (
+const post = async (
   { assistant, message, workspace, protocol, project_name },
   redis
 ) => {
-  message.sessionId = storeSession(redis, {
+  message.sessionId = await storeSession(redis, {
     project_name,
     protocol,
     assistant,
     workspace,
   });
+  console.log('  message.sessionId',  message.sessionId)
   if (message.sessionId) {
     return assistant
       .message(message)
