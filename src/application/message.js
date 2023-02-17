@@ -21,8 +21,8 @@ const makeMessage = async (data, redis) => {
     if (res && res.result) {
       data.context = res.result;
       _sendMessage(data, project_name);
-      return true;
-    } else _retriveMessage(data);
+    }
+    return true;
   } catch (err) {
     console.log("error make message", err);
     _retriveMessage(data);

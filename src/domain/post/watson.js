@@ -28,7 +28,7 @@ const post = async (
           console.log(session);
           if (session) {
             message.sessionId = session;
-            post(
+            return await post(
               {
                 assistant,
                 message,
