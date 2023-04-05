@@ -8,7 +8,7 @@ const storeSession = async (
   session = await redis.get(`${project_name}:session:${protocol}`);
   console.log("session", session);
   if (!session) {
-    console.log('assistant, workspace, project_name, protocol ', assistant, workspace, project_name, protocol )
+  
     session = await createSession(
       { assistant, workspace, project_name, protocol },
       redis
