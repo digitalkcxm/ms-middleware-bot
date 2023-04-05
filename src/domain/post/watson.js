@@ -12,6 +12,8 @@ const post = async (
   });
   console.log("  message.sessionId", message.sessionId);
   if (message.sessionId) {
+    if (message.sessionId === 403) return true;
+
     return assistant
       .message(message)
       .then((res) => {
@@ -26,7 +28,9 @@ const post = async (
             redis
           );
           console.log(session);
+
           if (session) {
+            if (session === 403) return true;
             message.sessionId = session;
             return await post(
               {
@@ -38,7 +42,7 @@ const post = async (
               },
               redis
             );
-          } else return false;
+          } else return true;
         }
         return true;
       });
