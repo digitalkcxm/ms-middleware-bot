@@ -12,6 +12,8 @@ const createSession = (
     })
     .catch((err) => {
       console.log(err);
+      // 403 acesso negado === credenciais invalidas
+      if (err.code === 403) return err.code;
       return false;
     });
 };
