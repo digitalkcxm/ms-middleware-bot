@@ -42,7 +42,7 @@ const post = async (
               },
               redis
             );
-          } else return true;
+          } else return false;
         }
         return true;
       });
