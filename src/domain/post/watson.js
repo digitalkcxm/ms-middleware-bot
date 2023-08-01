@@ -43,6 +43,17 @@ const post = async (
               redis
             );
           } else return false;
+        }else if(err.status == 500){
+          return await post(
+            {
+              assistant,
+              message,
+              workspace,
+              protocol,
+              project_name,
+            },
+            redis
+          );
         }
         return true;
       });
