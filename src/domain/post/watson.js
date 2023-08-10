@@ -1,10 +1,12 @@
 import createSession from "../session/createSession.js";
 import storeSession from "../session/storeSession.js";
+
 const post = async (
   { assistant, message, workspace, protocol, project_name },
   redis
 ) => {
-  message.sessionId = await storeSession(redis, {
+  if (!message) return false
+    message.sessionId = await storeSession(redis, { // este message chega false
     project_name,
     protocol,
     assistant,
@@ -43,7 +45,7 @@ const post = async (
               redis
             );
           } else return false;
-        }else if(err.status == 500){
+        } else if (err.status == 500) {
           return await post(
             {
               assistant,
