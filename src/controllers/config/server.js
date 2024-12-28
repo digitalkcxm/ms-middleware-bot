@@ -1,4 +1,3 @@
-import tracing from '../../infraestructure/config/elastic-apm.js';
 import http from "http";
 import app from "../../infraestructure/config/express.js";
 import bodyParser from "../../infraestructure/config/body-parser.js";
